@@ -1,7 +1,6 @@
 package com.proyectoinvdebienes.backend.service;
 
 import com.proyectoinvdebienes.backend.domain.enums.AssetStatus;
-import com.proyectoinvdebienes.backend.domain.enums.DisposalStatus;
 import com.proyectoinvdebienes.backend.domain.model.Asset;
 import com.proyectoinvdebienes.backend.domain.model.Disposal;
 import com.proyectoinvdebienes.backend.repository.AssetRepository;
@@ -33,7 +32,6 @@ public class DisposalService {
         disposal.setAsset(asset);
         disposal.setReason(request.reason());
         disposal.setDisposalType(request.disposalType());
-        disposal.setStatus(DisposalStatus.SOLICITADA);
         disposal.setRequestedBy(request.requestedBy());
         disposal.setRequestedAt(LocalDate.now());
 
@@ -45,7 +43,6 @@ public class DisposalService {
         Disposal disposal = disposalRepository.findById(disposalId)
                 .orElseThrow(() -> new NotFoundException("Solicitud de baja no encontrada"));
 
-        disposal.setStatus(DisposalStatus.APROBADA);
         disposal.setApprovedBy(request.approvedBy());
         disposal.setApprovedAt(LocalDate.now());
         disposal.setFinalValue(request.finalValue());
@@ -58,6 +55,6 @@ public class DisposalService {
     }
 
     public List<Disposal> findPending() {
-        return disposalRepository.findByStatus(DisposalStatus.SOLICITADA);
+        return disposalRepository.findAll();
     }
 }
