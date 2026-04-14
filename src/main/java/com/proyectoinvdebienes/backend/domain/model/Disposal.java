@@ -8,35 +8,42 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "Bajas_Activos")
 public class Disposal extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "id_activo", nullable = false)
     private Asset asset;
 
-    @Column(nullable = false)
+    @Column(name = "motivo_baja", nullable = false)
     private String reason;
 
+    @Transient
     private String disposalType;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Transient
     private DisposalStatus status;
 
-    @Column(nullable = false)
+    @Transient
     private String requestedBy;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_baja", nullable = false)
     private LocalDate requestedAt;
 
+    @Transient
     private String approvedBy;
 
+    @Transient
     private LocalDate approvedAt;
 
+    @Transient
     private BigDecimal finalValue;
 
     public Asset getAsset() {
