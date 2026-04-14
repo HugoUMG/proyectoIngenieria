@@ -8,34 +8,39 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "Asignacion_Activos")
 public class Assignment extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "id_activo")
     private Asset asset;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "id_empleado")
     private Employee employee;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_entrega", nullable = false)
     private LocalDate assignedAt;
 
+    @Transient
     private LocalDate expectedReturnAt;
 
+    @Column(name = "fecha_devolucion")
     private LocalDate returnedAt;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Transient
     private AssignmentStatus status;
 
-    @Column(nullable = false)
+    @Transient
     private String digitalSignature;
 
-    @Column(nullable = false)
+    @Transient
     private String receiptConfirmation;
 
     public Asset getAsset() {

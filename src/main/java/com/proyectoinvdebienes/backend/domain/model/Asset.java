@@ -9,48 +9,52 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "Activos")
 public class Asset extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    @Transient
     private String assetCode;
 
-    @Column(nullable = false)
+    @Transient
     private String name;
 
+    @Column(name = "descripcion_especifica")
     private String description;
 
-    @Column(nullable = false, unique = true)
+    @Transient
     private String serialNumber;
 
-    @Column(nullable = false)
+    @Transient
     private LocalDate acquisitionDate;
 
-    @Column(nullable = false)
+    @Column(name = "valor_actual")
     private BigDecimal acquisitionCost;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "estado_bien", nullable = false)
     private AssetStatus status;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Transient
     private TagType tagType;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "tag_qr_rfid", unique = true)
     private String tagValue;
 
-    @Column(nullable = false)
+    @Transient
     private String location;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "id_detalle")
     private PurchaseInvoice purchaseInvoice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Transient
     private Employee currentCustodian;
 
     public String getAssetCode() {

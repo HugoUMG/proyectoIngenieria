@@ -2,18 +2,21 @@ package com.proyectoinvdebienes.backend.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "Partidas_Presupuestarias")
 public class BudgetLine extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "codigo_partida", nullable = false, unique = true)
     private String code;
 
-    @Column(nullable = false)
+    @Column(name = "nombre_partida", nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    @Transient
     private BigDecimal allocatedAmount;
 
     public String getCode() {

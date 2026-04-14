@@ -4,7 +4,6 @@ import com.proyectoinvdebienes.backend.domain.model.UserAccount;
 import com.proyectoinvdebienes.backend.service.UserAccountService;
 import com.proyectoinvdebienes.backend.web.dto.CreateUserRequest;
 import jakarta.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,9 +35,9 @@ public class AdminUserController {
         return userAccountService.listUsers().stream().map(UserSummary::from).toList();
     }
 
-    public record UserSummary(Long id, String username, String role, LocalDateTime createdAt) {
+    public record UserSummary(Long id, String username, String role) {
         static UserSummary from(UserAccount account) {
-            return new UserSummary(account.getId(), account.getUsername(), account.getRole().name(), account.getCreatedAt());
+            return new UserSummary(account.getId(), account.getUsername(), account.getRole().name());
         }
     }
 }

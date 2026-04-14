@@ -2,23 +2,20 @@ package com.proyectoinvdebienes.backend.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "Proveedores")
 public class Supplier extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(name = "nombre_proveedor", nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "rfc", nullable = false, unique = true)
     private String taxId;
 
-    @Column(nullable = false)
+    @Column(name = "correo")
     private String email;
-
-    private String phone;
-
-    @Column(nullable = false)
-    private boolean active = true;
 
     public String getName() {
         return name;
@@ -44,19 +41,4 @@ public class Supplier extends BaseEntity {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 }
