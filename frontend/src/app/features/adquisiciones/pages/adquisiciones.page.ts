@@ -19,7 +19,7 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
           <input formControlName="invoiceNumber" placeholder="Número de factura" />
           <input type="date" formControlName="invoiceDate" />
           <input type="number" formControlName="totalAmount" placeholder="Total" />
-          <input type="number" formControlName="supplierId" placeholder="ID proveedor" />
+          <input type="number" formControlName="supplierId" placeholder="ID proveedores" />
           <input type="number" formControlName="budgetLineId" placeholder="ID partida" />
           <textarea formControlName="notes" placeholder="Notas"></textarea>
           <button type="submit">Registrar factura</button>

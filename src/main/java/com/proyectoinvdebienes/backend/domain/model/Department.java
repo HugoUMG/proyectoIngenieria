@@ -2,14 +2,16 @@ package com.proyectoinvdebienes.backend.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "Departamentos")
 public class Department extends BaseEntity {
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "nombre_depto", nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "centro_costo", unique = true)
     private String costCenterCode;
 
     public String getName() {
