@@ -115,18 +115,3 @@ CREATE TABLE Bajas_Activos (
     FOREIGN KEY (id_usuario_autoriza) REFERENCES Usuarios(id_usuario)
 );
 ```
-
-## Conexión recomendada para backend (Spring Boot)
-
-Usa una URL JDBC con creación automática de BD, UTF-8 y zona horaria en UTC:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/control_de_bienes?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.datasource.username=root
-spring.datasource.password=
-spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
-spring.jpa.hibernate.ddl-auto=none
-```
-
-> Si en logs aparece una versión `5.5.5` de MySQL no soportada por Hibernate, revisa la versión real del servidor (`SELECT VERSION();`) y usa MySQL 8+ o MariaDB con dialecto adecuado.
